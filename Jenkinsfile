@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('SCM-Checkout'){
             steps{
-            git 'https://github.com/rshruti/maven-release-plugin-example.git'
+            git 'https://github.com/rshruti/maven-modular.git'
             }
         }
          stage('Build'){
