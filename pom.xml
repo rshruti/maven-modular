@@ -5,6 +5,20 @@
   <groupId>io.jitpack</groupId>
   <artifactId>example-root</artifactId>
   <version>2.0-SNAPSHOT</version>
+  <scm>
+		<url>https://github.com/rshruti/maven-release-plugin-example</url>
+		<connection>scm:git:https://github.com/rshruti/maven-release-plugin-example.git</connection>
+      <tag>HEAD</tag>
+  </scm>
+  <distributionManagement>
+		<repository>
+			<id>nexus</id> 
+			<!-- http://localhost:8081/repository/<repository-name> -->
+			<url>http://3.89.39.164:8081/nexus/content/repositories/Releases1/</url>
+			
+      </repository>
+                   
+	</distributionManagement>
   <packaging>pom</packaging>
   <name>example-root</name>
   
@@ -23,6 +37,24 @@
           <source>1.7</source>
           <target>1.7</target>
         </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+				    <tag>v${releaseVersion}</tag>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<!-- releaseProfiles configuration will actually force a Maven profile 
+						– the `releases` profile – to become active during the Release process. -->
+					<releaseProfiles>releases</releaseProfiles>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-plugin</artifactId>
+						<version>1.8.1</version>
+					</dependency>
+				</dependencies>
       </plugin>
     </plugins>
   </build>
